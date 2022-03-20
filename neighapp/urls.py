@@ -21,3 +21,5 @@ urlpatterns = [
     path('logout',auth_views.LogoutView.as_view(template_name='neighapp/logout.html'),name='logout')
     
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
