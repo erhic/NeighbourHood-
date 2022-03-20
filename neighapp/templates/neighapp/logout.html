@@ -1,0 +1,17 @@
+{% extends 'neighapp/base.html' %} {% block content %} {% load crispy_forms_tags%}
+
+<div class="content mx-auto p-5 mt-5 bg-white" style="width: 35rem;">
+
+    <div>
+        <p class="text-center h2">You have been logged out</p>
+    </div>
+
+    <div class=" border-top pt-3">
+        <p class="text-muted fs-5 text-center">
+            Need to login? <a class="ml-2" href="{%url 'login'%}">Login</a>
+        </p>
+    </div>
+
+
+</div>
+{% endblock content %}
