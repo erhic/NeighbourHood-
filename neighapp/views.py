@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
 
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 def home(request):
@@ -13,6 +14,7 @@ def home(request):
 
 
 def register(request):
+    Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         # if form as method post and there is data posted return
         form=UserRegisterForm(request.POST)
