@@ -1,0 +1,45 @@
+{% extends 'neighapp/base.html' %} {% block content %} {% load crispy_forms_tags%}
+
+<div class="content mx-auto p-5 mt-5 bg-white" style="width: 45rem;">
+    <div class="row">
+
+        <div class=" col-md-3 border-top mx-auto  pt-3">
+            <img class="rounded-circle" src="{{user.profile.image.url}}" height="100rem" width="100rem" alt="">
+            <p class=" fs-3 text-center">
+                {{user.username}}
+            </p>
+            <p class=" fs-5 text-center">
+                {{user.email}}
+            </p>
+            <p class=" fs-3 text-center">
+                {{user.contact}}
+            </p>
+        </div>
+
+        <!-- <div class="col-md-6 px-5 mx-5"></div> -->
+        <form action="" method="POST" enctype="multipart/form-data">
+            <!--  prevent cross site forgery -->
+            {%csrf_token%}
+
+
+            <fieldset class="form-group ">
+
+                {{u_form|crispy}} {{p_form|crispy}}
+
+
+
+
+
+            </fieldset>
+            <div class="form-group">
+
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock content %}
