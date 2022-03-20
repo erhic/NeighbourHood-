@@ -1,4 +1,5 @@
 
+from venv import create
 from django.db import models
 
 # Create your models here.
@@ -11,6 +12,9 @@ class Profile(models.Model):
     user= models.OneToOneField(User, on_delete=models.CASCADE)
     image= models.ImageField(default='default.png',upload_to='profile_pics')
     contact=models.CharField(blank=True,max_length=50)
+    location=models.CharField(blank=True,max_length=50)
+    bio=models.CharField(blank=True,max_length=50)
+    created_at=models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
