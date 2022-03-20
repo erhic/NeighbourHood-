@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'neighapp.apps.NeighappConfig',
+     
+   
     
     'crispy_forms',
 ]
