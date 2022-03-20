@@ -16,7 +16,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username}Profile'
     
-    def save(self):
+    def save(self,**kwarg):
         super().save()
         #  the below variable will store  every instance of the image before risizing
         img= Image.open(self.image.path)
