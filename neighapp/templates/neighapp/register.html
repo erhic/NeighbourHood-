@@ -1,0 +1,33 @@
+{% extends 'neighapp/base.html' %} {% block content %} {% load crispy_forms_tags%}
+
+<div class="content mx-auto p-5 mt-5 bg-white" style="width: 35rem;">
+    <form action="" method="POST">
+        <!--  prevent cross site forgery -->
+        {%csrf_token%}
+
+
+        <fieldset class="form-group">
+
+            {{form|crispy}}
+
+
+
+
+
+        </fieldset>
+        <div class="form-group">
+
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+
+        <div class=" border-top pt-3">
+            <small class="text-muted">
+            Already Have an Account? <a class="ml-2" href="{%url 'login'%}">Login</a>
+            </small>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}
