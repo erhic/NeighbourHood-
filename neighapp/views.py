@@ -29,7 +29,7 @@ def register(request):
     context={'form':form}
     return render(request, 'neighapp/register.html',context)
 
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         u_form=UserUpdateForm(request.POST,instance=request.user)
