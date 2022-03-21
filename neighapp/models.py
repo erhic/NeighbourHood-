@@ -152,3 +152,43 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+ 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=10000, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    phone = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE, default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save_contact(self):
+        self.save()
+
+    def delete_contact(self):
+        self.delete()
+
+    def update_contact(self):
+        self.update()
+
+    @classmethod
+    def search_by_name(cls, search_term):
+        contact = cls.objects.filter(name__icontains=search_term)
+        return contact
+    
+    @classmethod
+    def find_contact(cls, id):
+        contact = cls.objects.get(id=id)
+        return contact
+
+    def __str__(self):
+        return self.name
