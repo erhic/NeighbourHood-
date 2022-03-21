@@ -1,4 +1,5 @@
 
+from unicodedata import name
 from venv import create
 from django.db import models
 from django.utils import timezone
@@ -33,4 +34,14 @@ class Profile(models.Model):
             output_size=(300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+            
+class Location(models.Model):
+    '''
+    This a model for ;database table for location, a generic table to used as by other models to attach location .
+    '''
+    name=models.CharField(blank=True,max_length=50)
+    
+    def __str__(self):
+        return name
+    
         
