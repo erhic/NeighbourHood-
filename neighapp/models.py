@@ -131,3 +131,24 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    def update_post(self):
+        self.update()
+
+    @classmethod
+    def search_by_title(cls, search_term):
+        post = cls.objects.filter(title__icontains=search_term)
+        return post
+
+    @classmethod
+    def find_post(cls, id):
+        post = cls.objects.get(id=id)
+        return post
+
+    def __str__(self):
+        return self.title
