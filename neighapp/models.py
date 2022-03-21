@@ -15,6 +15,7 @@ class Profile(models.Model):
     '''
     This a model for ;database table with field of every profile for  each created user in the application.
     '''
+    name=models.CharField(max_length=50,min_length=3)
     user= models.OneToOneField(User, on_delete=models.CASCADE)
     image= models.ImageField(default='default.png',upload_to='profile_pics')
     contact=models.CharField(blank=True,max_length=50)
@@ -113,3 +114,20 @@ class Business(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Post(models.Model):
+    '''
+    This a model for ;database table for post, a user can make a which will be of certain business, category and from certain neighbourhood.
+    '''
+    topic = models.CharField(max_length=70)
+    content = models.TextField(blank=True, null=True)
+    post_image= models.ImageField(default='default.png',upload_to='post_pics')
+    
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE, default=1)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
