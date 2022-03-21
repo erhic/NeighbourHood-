@@ -55,3 +55,27 @@ class Neighbourhood(models.Model):
     population = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def save_neigborhood(self):
+        self.save()
+
+    @classmethod
+    def delete_neighbourhood(cls, id):
+        cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def update_neighbourhood(cls, id):
+        cls.objects.filter(id=id).update()
+
+    @classmethod
+    def search_by_name(cls, search_term):
+        hood = cls.objects.filter(name__icontains=search_term)
+        return hood
+
+    @classmethod
+    def find_neigborhood(cls, id):
+        hood = cls.objects.get(id=id)
+        return hood
+    
+    def __str__(self):
+        return name
