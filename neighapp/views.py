@@ -14,7 +14,7 @@ def home(request):
 
 
 def register(request):
-    Profile.objects.get_or_create(user=request.user)
+    
     if request.method == 'POST':
         # if form as method post and there is data posted return
         form=UserRegisterForm(request.POST)
@@ -33,6 +33,7 @@ def register(request):
 
 @login_required
 def profile(request):
+    Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         u_form=UserUpdateForm(request.POST,instance=request.user)
         p_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
