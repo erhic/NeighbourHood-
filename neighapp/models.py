@@ -1,7 +1,3 @@
-
-from tkinter import CASCADE
-from unicodedata import name
-from venv import create
 from django.db import models
 from django.utils import timezone
 
@@ -16,7 +12,7 @@ class Profile(models.Model):
     '''
     This a model for ;database table with field of every profile for  each created user in the application.
     '''
-    name=models.CharField(max_length=50,min_length=3)
+    name=models.CharField(max_length=50)
     user= models.OneToOneField(User, on_delete=models.CASCADE)
     image= models.ImageField(default='default.png',upload_to='profile_pics')
     contact=models.CharField(blank=True,max_length=50)
@@ -43,16 +39,16 @@ class Location(models.Model):
     '''
     This a model for ;database table for location, a generic table to used as by other models to attach location .
     '''
-    name=models.CharField(max_length=50,min_length=3)
+    name=models.CharField(max_length=50)
     
     def __str__(self):
-        return name
+        return self.name
     
 class Neighbourhood(models.Model):
     '''
     This a model for ;database table for neighbourhood, every user has to be from a certian neighbourhood,evry business,post is attached to a neighbourhood.
     '''
-    name=models.CharField(max_length=50,min_length=3)
+    name = models.CharField(max_length=30)
     location=models.ForeignKey(Location,on_delete=models.CASCADE)
     admin = models.ForeignKey(User, on_delete=models.CASCADE)
     population = models.IntegerField(default=0)
@@ -81,7 +77,7 @@ class Neighbourhood(models.Model):
         return hood
     
     def __str__(self):
-        return name
+        return self.name
 
 class Business(models.Model):
     '''
