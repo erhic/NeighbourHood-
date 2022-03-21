@@ -79,3 +79,37 @@ class Neighbourhood(models.Model):
     
     def __str__(self):
         return name
+
+class Business(models.Model):
+    '''
+    This a model for ;database table for business, a user can have a  business and every business is to be in a certain neighbourhood.
+    '''
+    name = models.CharField(max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE)
+    bs_email = models.EmailField(max_length=20)
+    bs_description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def update_business(self):
+        self.update()
+
+    @classmethod
+    def search_by_name(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+        return business
+
+    @classmethod
+    def find_business(cls, id):
+        business = cls.objects.get(id=id)
+        return business
+
+    def __str__(self):
+        return self.name
