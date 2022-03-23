@@ -1,8 +1,8 @@
 {% extends 'neighapp/base.html' %} {% block content %} {% load crispy_forms_tags%}
 
 <!-- <div class="content mx-auto p-5 mt-5 bg-white" style="width: 55rem;"> -->
-<div class="mx-auto pt-5 px-2">
-    <div class="row  mt-4">
+<div class="mx-auto p px-2">
+    <div class="row  mt-2">
 
         <div class=" col-md-4 border-top  bg-light mx-5 pt-3">
             <p class="text-center"><img class="rounded-circle pt-2 mb-2" src="{{user.profile.image.url}}" height="100rem" width="100rem" alt=""></p>
@@ -42,9 +42,9 @@
 
 
                 </fieldset>
-                <div class="form-group pt-2 px-5 py-4">
+                <div class="form-group  ">
 
-                    <button class="btn btn-outline-info" type="submit">Update</button>
+                    <button class="btn btn-outline-info modal-footer" type="submit">Update</button>
                 </div>
 
 

@@ -1,0 +1,81 @@
+{% extends "neighapp/base.html" %} {% block content %}
+<section class="profile container">
+    <div class=" mt-5">
+        <div class="row">
+
+            <div class="row">
+
+                {% if danger %}
+                <div class="alert alert-danger" role="alert">
+                    {{ danger }}
+                </div>
+                {% endif %}
+
+
+                <div class="col-md-5 mx-auto">
+                    <button type="button" class="btn btn-outline-info btn-lg m-3">
+                        Add Business
+                    </button>
+
+                    <form action="{% url 'create_business' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="title">Business Name</label>
+                            <input type="text" class="form-control" value="" name="name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="title">Business Email</label>
+                            <input type="email" class="form-control" value="" name="email" required>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="exampleFormControlTextarea1"> Business Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="description"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn  btn-outline-success">Save</button>
+                    </form>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-5 mx-auto mt-2">
+                    <button type="button" class="btn btn-outline-info btn-lg m-3">
+                        Add Contact
+                    </button>
+
+
+                    <form action="{% url 'create_contact' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="title">Name</label>
+                            <input type="text" class="form-control" value="" name="name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="title">Phone</label>
+                            <input type="number" class="form-control" value="" name="phone" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="title">Email</label>
+                            <input type="email" class="form-control" value="" name="email" required>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                    </form>
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+</section>
+{% endblock %}

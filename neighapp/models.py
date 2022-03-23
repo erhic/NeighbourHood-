@@ -2,38 +2,15 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
+import cloudinary
+from cloudinary.models import CloudinaryField
+from distutils.command.upload import upload
 from django.contrib.auth.models import User
 from  PIL import Image
 from datetime import datetime as dt
 
 
 
-class Profile(models.Model):
-    '''
-    This a model for ;database table with field of every profile for  each created user in the application.
-    '''
-    name=models.CharField(max_length=50)
-    user= models.OneToOneField(User, on_delete=models.CASCADE)
-    image= models.ImageField(default='default.png',upload_to='profile_pics')
-    contact=models.CharField(blank=True,max_length=50)
-    location = models.ForeignKey('Location', on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE)
-    bio=models.CharField(blank=True,max_length=50)
-    created_at=models.DateTimeField(auto_now_add=True)
-    
-    
-    def __str__(self):
-        return f'{self.user.username}Profile'
-    
-    def save(self,**kwarg):
-        super().save()
-        #  the below variable will store  every instance of the image before risizing
-        img= Image.open(self.image.path)
-        
-        if img.height>300 or img.width>300:
-            output_size=(300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
             
 class Location(models.Model):
     '''
@@ -43,6 +20,8 @@ class Location(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
     
 class Neighbourhood(models.Model):
     '''
@@ -78,6 +57,37 @@ class Neighbourhood(models.Model):
     
     def __str__(self):
         return self.name
+    
+
+
+class Profile(models.Model):
+    '''
+    This a model for ;database table with field of every profile for  each created user in the application.
+    '''
+    name=models.CharField(max_length=50)
+    user= models.OneToOneField(User, on_delete=models.CASCADE)
+    image= models.ImageField(default='default.png',upload_to='profile_pics')
+    contact=models.CharField(blank=True,max_length=50)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    bio=models.CharField(blank=True,max_length=50)
+    created_at=models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self):
+        return f'{self.user.username}Profile'
+    
+    def save(self,**kwarg):
+        super().save()
+        #  the below variable will store  every instance of the image before risizing
+        img= Image.open(self.image.path)
+        
+        if img.height>300 or img.width>300:
+            output_size=(300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+            
+            
 
 class Business(models.Model):
     '''
@@ -112,6 +122,7 @@ class Business(models.Model):
 
     def __str__(self):
         return self.name
+    
     
 class Post(models.Model):
     '''
@@ -149,7 +160,9 @@ class Post(models.Model):
         return post
 
     def __str__(self):
-        return self.title
+        return self.topic
+    
+    
  
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -159,6 +172,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
 
 class Contact(models.Model):
     name = models.CharField(max_length=50)

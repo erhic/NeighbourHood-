@@ -1,0 +1,37 @@
+{% extends "neighapp/base.html" %} {% block content %}
+
+<section class="">
+    <div class="container mt-5">
+
+        <div class="row mt-4">
+
+            <h2 class="text-center mb-5 headings">Business <br>{{neighbourhood}}
+            </h2>
+
+            {% for busines in business %}{% if busines in business.all%}
+            <div class="col-md-12 col-lg-3">
+                <div class="card shadow rounded">
+                    <div class="card-body shadow">
+                        <p class=" fs-3 card-title text-capitalize">{{ busines.name }}</p>
+                        <p class=" fs-5 card-subtitle mb-2 text-muted">Owner: <span class="badge rounded-pill bg-info text-white">{{ busines.user.first_name }}</span></p>
+                        <a href="{{ busines.email }}" class="card-link p-2">Email: <span class="text-bold text-primary">{{ busines.email }}</span> </a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="col-md-12">
+                <div class="card mb-4 mx-auto">
+                    <div class="card-body text-center">
+                        <h6 class="fade-item mb-2 text-danger">No business found !</h6>
+                    </div>
+                </div>
+
+                {% endif %} {% endfor %}
+
+            </div>
+        </div>
+</section>
+
+{% endblock %}

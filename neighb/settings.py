@@ -9,8 +9,17 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import django_heroku
+from django.conf import settings
+from django.conf.urls.static import static
 from pathlib import Path
+import dj_database_url
+from decouple import config,Csv
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +31,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@c2u1zjfq4@l02h2avjb^g=&n2f#4ol&k2f)duj37^l@xao1d4'
 
+cloudinary.config( 
+  cloud_name = "dayqmj50s", 
+  api_key = "322347289834666", 
+  api_secret = "y37FBwHvxjrAWClpa3LEYUNQsYw",
+  secure=True
+)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
