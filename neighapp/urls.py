@@ -19,7 +19,7 @@ urlpatterns = [
     path("profile/update/", views.update_profile, name="update_profile"),
     
 #    using  LoginView and LogoutView, class based views, they have the logic but we show them how to handle templates
-    path('login',auth_views.LoginView.as_view(template_name='neighapp/login.html'),name='login'),
+    path('',auth_views.LoginView.as_view(template_name='neighapp/login.html'),name='login'),
     path('logout',auth_views.LogoutView.as_view(template_name='neighapp/logout.html'),name='logout'),
 
     # basic views
