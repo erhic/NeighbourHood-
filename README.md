@@ -16,10 +16,10 @@ password:1qazxcvb
 #### Login Page /auth-system
 ![Screenshot](snapshots/Screen1.png)
 
-#### Post-Comment Section Page
+#### Account Updating  Page
 ![Screenshot](snapshots/Screen2.png)
 
-#### Post Upload Page
+#### Profile Page
 ![Screenshot](snapshots/Screen3.png)
 ### BDD
 
