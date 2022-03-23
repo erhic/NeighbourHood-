@@ -35,7 +35,7 @@ def register(request):
 
 @login_required
 def profileacc(request):
-    Profile.objects.get_or_create(user=request.user,)
+    Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         u_form=UserUpdateForm(request.POST,instance=request.user)
         p_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)

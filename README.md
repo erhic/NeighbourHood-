@@ -6,7 +6,21 @@
 
 This is a web application that allows users to create new neighborhoods, or join an exicisting neighbourhood, user can also delete hoods, update and create profiles.
 
+#### Default user for test
 
+username:eric
+password:1qazxcvb
+
+
+### Snapshots
+#### Login Page /auth-system
+![Screenshot](snapshots/Screen1.png)
+
+#### Post-Comment Section Page
+![Screenshot](snapshots/Screen2.png)
+
+#### Post Upload Page
+![Screenshot](snapshots/Screen3.png)
 ### BDD
 
 | Behaviour | Input | Output |

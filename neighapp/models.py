@@ -16,7 +16,7 @@ class Location(models.Model):
     '''
     This a model for ;database table for location, a generic table to used as by other models to attach location .
     '''
-    name=models.CharField(max_length=50)
+    name=models.CharField(max_length=50,default='Nairobi')
     
     def __str__(self):
         return self.name
@@ -66,7 +66,7 @@ class Profile(models.Model):
     '''
     name=models.CharField(max_length=50)
     user= models.OneToOneField(User, on_delete=models.CASCADE)
-    image= models.ImageField(default='default.png',upload_to='profile_pics')
+    image= CloudinaryField('image')
     contact=models.CharField(blank=True,max_length=50)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
@@ -128,9 +128,9 @@ class Post(models.Model):
     '''
     This a model for ;database table for post, a user can make a which will be of certain business, category and from certain neighbourhood.
     '''
-    topic = models.CharField(max_length=70)
+    topic = models.CharField(max_length=70,null=True)
     content = models.TextField(blank=True, null=True)
-    post_image= models.ImageField(default='default.png',upload_to='post_pics')
+    post_image= CloudinaryField('image')
     
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
