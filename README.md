@@ -1,4 +1,4 @@
-# INSTAGRAM
+# NEIGHHOOD
 
 ## Author: [Eric N](https://github.com/erhic/Neighbourhood)
 
